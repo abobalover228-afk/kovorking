@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Карта студенческих коворкингов — v2 · Николай Самойлов</title>
+<meta name="description" content="Проект: карта доступных мест для учёбы в Минске. Направление: инновационные технологии, бизнес и предпринимательство.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2EFE8;
+    --paper-2:#E8E4DA;
+    --ink:#111110;
+    --ink-soft:#4A4A45;
+    --line:#D6D1C4;
+    --accent:#FF4A1C;
+    --mono:"JetBrains Mono", ui-monospace, monospace;
+    --disp:"Unbounded", system-ui, sans-serif;
+    --body:"Inter", system-ui, sans-serif;
+    --pad:clamp(20px,5vw,80px);
+    --maxw:1240px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--accent);color:#fff}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+  .mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+  nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:16px var(--pad);mix-blend-mode:difference;color:#fff;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+  nav .links{display:flex;gap:26px}
+  nav .links a{opacity:.6;transition:opacity .2s}
+  nav .links a:hover{opacity:1}
+  @media(max-width:760px){nav .links{display:none}}
+
+  header{background:var(--ink);color:var(--paper);min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px var(--pad) 48px;position:relative;overflow:hidden}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse 80% 60% at 70% 20%,#000,transparent 75%);mask-image:radial-gradient(ellipse 80% 60% at 70% 20%,#000,transparent 75%);opacity:.12}
+  .hero-top{position:absolute;top:96px;left:var(--pad);right:var(--pad);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#8d8d86}
+  h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,8.5vw,7.2rem);line-height:.94;letter-spacing:-.02em;max-width:15ch;position:relative;z-index:2}
+  h1 .strike{position:relative;white-space:nowrap}
+  h1 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:52%;height:.09em;background:var(--accent);transform:rotate(-1.2deg)}
+  .hero-sub{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-top:40px;position:relative;z-index:2;border-top:1px solid #333;padding-top:24px}
+  .hero-sub p{max-width:52ch;color:#c9c6bd;font-size:clamp(1rem,1.4vw,1.15rem)}
+  .scroll-hint{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#8d8d86;display:flex;align-items:center;gap:10px}
+  .scroll-hint .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+  section{padding:clamp(72px,10vw,140px) 0;border-bottom:1px solid var(--line)}
+  .sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;margin-bottom:56px}
+  .sec-num{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--accent)}
+  h2{font-family:var(--disp);font-weight:600;font-size:clamp(1.8rem,4.2vw,3.4rem);line-height:1.02;letter-spacing:-.02em;max-width:20ch}
+  h3{font-family:var(--disp);font-weight:600;font-size:1.15rem;letter-spacing:-.01em;margin-bottom:12px}
+  .lead{font-size:clamp(1.05rem,1.6vw,1.35rem);max-width:62ch;color:var(--ink-soft)}
+  .lead strong{color:var(--ink);font-weight:600}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+  .stat{background:var(--paper);padding:32px 26px}
+  .stat .big{font-family:var(--disp);font-weight:800;font-size:clamp(2rem,4.5vw,3.2rem);line-height:1;letter-spacing:-.03em}
+  .stat .lbl{margin-top:14px;font-size:.92rem;color:var(--ink-soft)}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  .card{background:var(--paper-2);border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;gap:10px;transition:transform .3s cubic-bezier(.2,.7,.3,1),background .3s}
+  .card:hover{transform:translateY(-4px);background:#fff}
+  .card .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .card p{color:var(--ink-soft);font-size:.98rem}
+
+  .quote{font-family:var(--disp);font-weight:600;font-size:clamp(1.5rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.02em;max-width:24ch}
+  .quote em{font-style:normal;background:linear-gradient(transparent 62%,var(--accent) 62%,var(--accent) 92%,transparent 92%)}
+
+  .how{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  @media(max-width:900px){.how{grid-template-columns:1fr;gap:40px}}
+  .steps{display:flex;flex-direction:column;gap:0}
+  .step{display:flex;gap:20px;padding:22px 0;border-top:1px solid var(--line)}
+  .step:last-child{border-bottom:1px solid var(--line)}
+  .step .n{font-family:var(--mono);font-size:.8rem;color:var(--accent);padding-top:4px}
+  .step h3{margin-bottom:6px}
+  .step p{color:var(--ink-soft);font-size:.95rem}
+
+  .phone{width:min(340px,80vw);margin:0 auto;background:var(--ink);border-radius:38px;padding:12px;box-shadow:0 40px 80px -30px rgba(17,17,16,.5)}
+  .screen{background:var(--paper);border-radius:28px;overflow:hidden;aspect-ratio:9/19;position:relative;display:flex;flex-direction:column}
+  .screen-top{padding:14px 16px 10px;background:var(--ink);color:#fff}
+  .screen-top .t{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+  .screen-top .q{font-family:var(--disp);font-weight:600;font-size:.95rem;margin-top:6px}
+  .chips{display:flex;gap:8px;padding:12px 16px;flex-wrap:wrap}
+  .chip{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:100px;padding:6px 11px;cursor:pointer;transition:.2s;user-select:none;background:transparent}
+  .chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .maparea{flex:1;position:relative;background:repeating-linear-gradient(0deg,var(--line) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 40px);background-color:var(--paper-2);overflow:hidden}
+  .pin{position:absolute;width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--paper);transform:translate(-50%,-50%);cursor:pointer;transition:.35s cubic-bezier(.2,.8,.3,1);box-shadow:0 3px 8px rgba(0,0,0,.2)}
+  .pin.free{background:#1a7f4b}
+  .pin.paid{background:#2b5cff}
+  .pin.dim{opacity:.15;transform:translate(-50%,-50%) scale(.6)}
+  .pin::after{content:attr(data-l);position:absolute;bottom:130%;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.5rem;background:var(--ink);color:#fff;padding:3px 6px;border-radius:4px;white-space:nowrap;opacity:0;transition:.2s;pointer-events:none}
+  .pin:hover::after{opacity:1}
+  .legend{display:flex;gap:14px;padding:10px 16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+
+  .tbl{width:100%;border-collapse:collapse;font-size:.92rem}
+  .tbl th{text-align:left;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding:14px 16px;border-bottom:1px solid var(--ink)}
+  .tbl td{padding:16px;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl tr:hover td{background:var(--paper-2)}
+  .tbl .hl{color:var(--accent);font-weight:600}
+  @media(max-width:700px){.tbl{font-size:.82rem}.tbl th,.tbl td{padding:11px 8px}}
+
+  .model{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+  .m-card{background:var(--paper);padding:30px 26px}
+  .m-card .tag{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:100px;border:1px solid var(--line);margin-bottom:16px}
+  .m-card .tag.yes{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .m-card p{font-size:.92rem;color:var(--ink-soft)}
+
+  .road{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;border-top:1px solid var(--line)}
+  .r-step{padding:28px 22px 34px;border-right:1px solid var(--line);position:relative}
+  .r-step:last-child{border-right:none}
+  .r-step .when{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .r-step h3{font-size:1rem}
+  .r-step p{font-size:.86rem;color:var(--ink-soft)}
+  .r-step::before{content:"";position:absolute;top:-5px;left:22px;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+  @media(max-width:760px){.r-step{border-right:none;border-bottom:1px solid var(--line)}}
+
+  .tech{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+  @media(max-width:820px){.tech{grid-template-columns:1fr;gap:32px}}
+  .tech ul{list-style:none;display:flex;flex-direction:column}
+  .tech li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:.94rem}
+  .tech li span:last-child{color:var(--ink-soft);text-align:right;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;padding-top:3px}
+
+  .author{background:var(--ink);color:var(--paper);border-bottom:none}
+  .author .lead{color:#b9b6ad}
+  .author .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-top:48px;border-top:1px solid #333;padding-top:32px}
+  .author .meta .mono{color:#8d8d86}
+  .author .meta .v{font-family:var(--disp);font-weight:600;font-size:1.05rem;margin-top:6px;color:var(--paper)}
+  .cta{display:inline-flex;align-items:center;gap:12px;margin-top:44px;background:var(--accent);color:#fff;padding:16px 28px;border-radius:100px;font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;transition:transform .25s cubic-bezier(.2,.8,.3,1)}
+  .cta:hover{transform:translateY(-3px)}
+  .cta .arw{transition:transform .25s}
+  .cta:hover .arw{transform:translateX(5px)}
+
+  .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+  .rv.in{opacity:1;transform:none}
+  footer{padding:36px var(--pad);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;background:var(--ink);color:#7c7c76;border-top:1px solid #262625}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<nav>
+  <div class="brand">КСК · Минск</div>
+  <div class="links">
+    <a href="#problem">Проблема</a>
+    <a href="#idea">Идея</a>
+    <a href="#how">Как работает</a>
+    <a href="#market">Рынок</a>
+    <a href="#model">Модель</a>
+    <a href="index.html">Версия 1 →</a>
+  </div>
+</nav>
+
+<header>
+  <div class="hero-grid"></div>
+  <div class="hero-top mono">
+    <span>Проект · Инновационные технологии, бизнес и предпринимательство</span>
+    <span>Минск · 2026</span>
+  </div>
+  <h1>Мне негде <span class="strike">учиться</span>.<br>Я это исправил.</h1>
+  <div class="hero-sub">
+    <p>Я живу в общежитии. Комната на четверых, один стол, шум до трёх ночи. Библиотека закрывается в восемь. Кафе — это не рабочее место. Я собрал <strong>карту всех мест в Минске, где студент может сесть и работать</strong> — бесплатно и по-настоящему.</p>
+    <div class="scroll-hint"><span class="dot"></span> Скролл вниз</div>
+  </div>
+</header>
+
+<section id="problem">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Проблема не в лени. Проблема в том, что негде.</h2>
+      <span class="sec-num">01 / Проблема</span>
+    </div>
+    <p class="lead rv" style="margin-bottom:56px">Студенту нужно место, где есть <strong>стол, розетка, интернет и тишина</strong>. Дома в общежитии этого нет. Бесплатных мест в городе хватает — но о них никто не знает, и они разбросаны по десяти разным источникам.</p>
+    <div class="stats rv">
+      <div class="stat"><div class="big">40 000+</div><div class="lbl">студентов учатся в Минске</div></div>
+      <div class="stat"><div class="big">300–700 <span style="font-size:.45em">BYN</span></div><div class="lbl">в месяц стоит платный коворкинг — это дороже стипендии</div></div>
+      <div class="stat"><div class="big">до 20:00</div><div class="lbl">закрываются бесплатные читальные залы — как раз к вечеру</div></div>
+      <div class="stat"><div class="big">0</div><div class="lbl">сервисов, которые собирают эти места для студентов в одном приложении</div></div>
+    </div>
+    <div class="cards rv" style="margin-top:20px">
+      <div class="card"><div class="k">Общага</div><h3>Один стол на четверых</h3><p>Позвать друзей на проект некуда. Созвониться на паре — некуда. Спать и работать в одной комнате — невозможно.</p></div>
+      <div class="card"><div class="k">Библиотека</div><h3>Закрылась — и ты на улице</h3><p>КБ-16 работает до 20:00. Национальная — нужен читательский билет. Никто не знает, где свободно прямо сейчас.</p></div>
+      <div class="card"><div class="k">Кафе</div><h3>Купи кофе — и не засиживайся</h3><p>Розетки заняты, официант смотрит косо, интернета нет. Так работать нельзя, это стресс, а не место.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="idea">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Одна карта. Все места. Только правда.</h2>
+      <span class="sec-num">02 / Идея</span>
+    </div>
+    <p class="quote rv">Карта студенческих коворкингов — это <em>навигатор для тех, кому нужно сесть и сделать</em>.</p>
+    <p class="lead rv" style="margin-top:40px">Не ещё один каталог аренды офисов. Инструмент для студента: открыл — увидел ближайшее место, где можно работать, <strong>узнал, пустят ли бесплатно, есть ли розетки и до скольки открыто</strong>. Данные честные, потому что их обновляют сами студенты.</p>
+    <div class="cards rv" style="margin-top:48px">
+      <div class="card"><div class="k">Фильтр «бесплатно»</div><h3>Без стипендии на аренду</h3><p>Показываем только места, где студент может работать бесплатно или по студенческому.</p></div>
+      <div class="card"><div class="k">Режим и доступ</div><h3>До скольки открыто</h3><p>Часы работы, нужен ли читательский билет, можно ли с ноутбуком, есть ли WiFi и розетки.</p></div>
+      <div class="card"><div class="k">Отзывы студентов</div><h3>Живая правда</h3><p>«Здесь шумно», «розеток мало», «лучшее место у окна» — от тех, кто уже сидел там.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Три нажатия — и ты работаешь</h2>
+      <span class="sec-num">03 / Как работает</span>
+    </div>
+    <div class="how">
+      <div class="steps rv">
+        <div class="step"><span class="n">01</span><div><h3>Открыл карту</h3><p>Приложение видит, где ты. Показывает ближайшие места точками — зелёные бесплатные, синие платные.</p></div></div>
+        <div class="step"><span class="n">02</span><div><h3>Включил фильтры</h3><p>«Бесплатно», «Открыто сейчас», «Есть розетки», «Тихо». Остаются только те, что тебе подходят.</p></div></div>
+        <div class="step"><span class="n">03</span><div><h3>Пошёл и сел</h3><p>Видишь режим, условия входа и фото. Строишь маршрут. После — оставляешь отзыв, чтобы помочь другим.</p></div></div>
+      </div>
+      <div class="phone rv">
+        <div class="screen">
+          <div class="screen-top">
+            <div class="t">Ближайшее к тебе</div>
+            <div class="q">Найдено 12 мест · 5 бесплатно</div>
+          </div>
+          <div class="chips" id="chips">
+            <div class="chip on" data-f="all">Все</div>
+            <div class="chip" data-f="free">Бесплатно</div>
+            <div class="chip" data-f="paid">Платно</div>
+          </div>
+          <div class="maparea" id="map"></div>
+          <div class="legend">
+            <span><i style="background:#1a7f4b"></i>Бесплатно</span>
+            <span><i style="background:#2b5cff"></i>Платно</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="market">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Что уже есть — и почему этого мало</h2>
+      <span class="sec-num">04 / Рынок</span>
+    </div>
+    <p class="lead rv" style="margin-bottom:40px">Места и сервисы существуют. Но ни один из них не решает задачу студента: «где мне прямо сейчас сесть и поработать — и чтобы не выгнали».</p>
+    <div style="overflow-x:auto" class="rv">
+      <table class="tbl">
+        <thead><tr><th>Сервис / место</th><th>Что даёт</th><th>Чего не хватает студенту</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Яндекс.Карты, 2ГИС</strong></td><td>Поиск «коворкинг», маршруты, отзывы</td><td>Нет фильтров «бесплатно», «есть розетки», «режим до ночи»</td></tr>
+          <tr><td><strong>kovorkingi.online</strong></td><td>Каталог коворкингов на карте</td><td>Только платные, нет акцента на студентов и вузы</td></tr>
+          <tr><td><strong>КБ-16 (БНТУ)</strong></td><td>Бесплатный зал на 150 мест</td><td>Только до 20:00, знают лишь студенты БНТУ</td></tr>
+          <tr><td><strong>Национальная библиотека</strong></td><td>Бесплатные залы, интернет</td><td>Нужен читательский билет, очереди, режим до 21:00</td></tr>
+          <tr><td class="hl"><strong>Карта студенческих коворкингов</strong></td><td class="hl">Все места, фильтр «бесплатно», честные данные от студентов</td><td class="hl">— этого проекта пока не было</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="model">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Как проект живёт и зарабатывает</h2>
+      <span class="sec-num">05 / Бизнес-модель</span>
+    </div>
+    <p class="lead rv" style="margin-bottom:48px">Главный принцип: <strong>для студента — всегда бесплатно</strong>. Платят те, кому это выгодно: коворкинги, бренды, гранты.</p>
+    <div class="model rv">
+      <div class="m-card"><span class="tag yes">Старт</span><h3>Гранты и конкурсы</h3><p>«100 идей для Беларуси», гранты Президента, фонды поддержки молодёжных проектов. Деньги на разработку и запуск, без инвесторов.</p></div>
+      <div class="m-card"><span class="tag yes">Основное</span><h3>Лидогенерация</h3><p>Кнопка «Забронировать место» в платном коворкинге. Мы приводим клиента — коворкинг платит за это 5–15%.</p></div>
+      <div class="m-card"><span class="tag">Развитие</span><h3>Платное размещение</h3><p>Бейдж «студентам бесплатно», расширенная карточка, топ в выдаче — для партнёрских заведений.</p></div>
+      <div class="m-card"><span class="tag">Позже</span><h3>Партнёрки и реклама</h3><p>Кофейни рядом, курсы, банки с молодёжными продуктами. Ненавязчиво и только релевантно студенту.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="tech">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Технологии: минимально и надёжно</h2>
+      <span class="sec-num">06 / Реализация</span>
+    </div>
+    <p class="lead rv" style="margin-bottom:48px">Ничего лишнего. Прототип собирается за пару недель одним человеком и работает на любом телефоне как приложение.</p>
+    <div class="tech rv">
+      <ul>
+        <li><span>Карта и навигация</span><span>Яндекс Maps API</span></li>
+        <li><span>Интерфейс</span><span>React + TypeScript</span></li>
+        <li><span>Бэкенд и база</span><span>PocketBase + SQLite</span></li>
+        <li><span>Формат приложения</span><span>PWA — без магазинов</span></li>
+      </ul>
+      <ul>
+        <li><span>Данные о местах</span><span>Парсеры + студенты</span></li>
+        <li><span>Обновление режима</span><span>Кнопка «Сообщить»</span></li>
+        <li><span>Хостинг</span><span>VPS, ~10 $ / мес</span></li>
+        <li><span>Стоимость запуска</span><span>только своё время</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="road">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>План на полгода</h2>
+      <span class="sec-num">07 / Дорожная карта</span>
+    </div>
+    <div class="road rv">
+      <div class="r-step"><div class="when">Неделя 1</div><h3>Сбор данных</h3><p>50+ мест в таблицу, фото, режим, условия входа. 15 интервью со студентами.</p></div>
+      <div class="r-step"><div class="when">Недели 2–4</div><h3>Прототип</h3><p>Работающая карта с фильтрами на телефоне. Наполнение и тесты.</p></div>
+      <div class="r-step"><div class="when">Неделя 5</div><h3>Запуск в вузах</h3><p>Посты в чатах БНТУ, БГУ, МГУ, БГЭУ. Первые 200 пользователей.</p></div>
+      <div class="r-step"><div class="when">Недели 6–8</div><h3>Заявки на гранты</h3><p>«100 идей для Беларуси» и фонды. Первые партнёрства с коворкингами.</p></div>
+      <div class="r-step"><div class="when">Месяцы 3–6</div><h3>Масштаб</h3><p>Ещё города, мобильное приложение, договоры с заведениями.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="author">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Я не жду, пока кто-то сделает это за меня</h2>
+      <span class="sec-num">08 / Автор</span>
+    </div>
+    <p class="lead rv">Этот проект я делаю потому, что проблема — моя собственная. Я каждый день ищу, где сесть и работать. Пока такой карты нет — я её строю.</p>
+    <div class="meta rv">
+      <div><div class="mono">Автор</div><div class="v">Николай Самойлов</div></div>
+      <div><div class="mono">Класс / группа</div><div class="v">7п</div></div>
+      <div><div class="mono">Направление</div><div class="v">Инновационные технологии, бизнес и предпринимательство</div></div>
+      <div><div class="mono">Город</div><div class="v">Минск</div></div>
+    </div>
+    <a class="cta" href="index.html">Открыть интеллигентную версию <span class="arw">→</span></a>
+  </div>
+</section>
+
+<footer>
+  <span class="mono">Карта студенческих коворкингов · v2 · 2026</span>
+  <span class="mono">Николай Самойлов · 7п</span>
+</footer>
+
+<script>
+  const bar=document.getElementById('progress');
+  addEventListener('scroll',()=>{
+    const h=document.documentElement.scrollHeight-innerHeight;
+    bar.style.width=(scrollY/h*100)+'%';
+  },{passive:true});
+
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  const places=[
+    {x:22,y:26,free:true,l:'КБ-16 · БНТУ'},
+    {x:64,y:18,free:true,l:'Нац. библиотека'},
+    {x:78,y:48,free:false,l:'HUB#1'},
+    {x:38,y:58,free:true,l:'Библиотека БГУ'},
+    {x:56,y:72,free:false,l:'Работаем! К-35'},
+    {x:15,y:64,free:true,l:'Библиотека БГЭУ'},
+    {x:84,y:78,free:false,l:'Mind Point'},
+    {x:46,y:40,free:true,l:'Молодёжный центр'},
+  ];
+  const map=document.getElementById('map');
+  places.forEach(p=>{
+    const d=document.createElement('div');
+    d.className='pin '+(p.free?'free':'paid');
+    d.style.left=p.x+'%';d.style.top=p.y+'%';
+    d.dataset.l=p.l;d.dataset.f=p.free?'free':'paid';
+    map.appendChild(d);
+  });
+  document.querySelectorAll('#chips .chip').forEach(c=>{
+    c.onclick=()=>{
+      document.querySelectorAll('#chips .chip').forEach(x=>x.classList.remove('on'));
+      c.classList.add('on');
+      const f=c.dataset.f;
+      document.querySelectorAll('.pin').forEach(p=>p.classList.toggle('dim', f!=='all' && p.dataset.f!==f));
+    };
+  });
+</script>
+</body>
+</html>
