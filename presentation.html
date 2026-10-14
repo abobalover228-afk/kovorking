@@ -3,268 +3,467 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Карта студенческих коворкингов — презентация</title>
+<title>Карта студенческих коворкингов — investor deck</title>
+<meta name="description" content="Инвесторская презентация проекта Карта студенческих коворкингов — Минск, 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#FBF9F4;
+    --paper:#FDFCF9;
     --paper-2:#F3EFE6;
-    --ink:#1A1A18;
-    --ink-soft:#5A5850;
-    --ink-faint:#8C8A80;
-    --line:#E2DCCF;
-    --accent:#2F4A3C;
-    --accent-soft:#E8EDE8;
+    --ink:#0E0F0D;
+    --ink-soft:#4A4A44;
+    --ink-faint:#8E8C86;
+    --line:#E6E0D2;
+    --accent:#1A3A2A;
+    --accent-2:#C6A86A;
+    --accent-soft:#EAF0E8;
     --serif:"Lora", Georgia, serif;
     --sans:"Inter", system-ui, sans-serif;
     --mono:"JetBrains Mono", ui-monospace, monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{
-    background:#0E0F0D;
-    color:var(--ink);
-    font-family:var(--sans);
-    overflow:hidden;
-  }
+  body{background:#050706;color:var(--ink);font-family:var(--sans);overflow:hidden}
   ::selection{background:var(--accent);color:#fff}
+  a{color:inherit}
 
+  /* deck */
   #deck{position:relative;width:100%;height:100vh;overflow:hidden}
   .slide{
     position:absolute;inset:0;
     background:var(--paper);
     display:flex;flex-direction:column;
-    padding:clamp(32px,5vw,88px) clamp(40px,7vw,120px);
+    padding:clamp(28px,4.5vw,72px) clamp(36px,6vw,112px);
     opacity:0;visibility:hidden;
-    transform:translateY(14px);
-    transition:opacity .5s cubic-bezier(.2,.7,.3,1), transform .5s cubic-bezier(.2,.7,.3,1);
+    transform:translateY(10px);
+    transition:opacity .45s cubic-bezier(.2,.7,.3,1), transform .45s cubic-bezier(.2,.7,.3,1);
   }
   .slide.active{opacity:1;visibility:visible;transform:none;z-index:2}
-  .slide.prev{transform:translateY(-14px)}
+  .slide.dark{background:#0B120E;color:#FDFCF9}
+  .slide.accent{background:var(--accent);color:#FDFCF9}
 
-  .slide-tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:auto;flex:0}
-  .slide-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:clamp(24px,4vh,48px)}
-  .slide-foot{display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;padding-top:24px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+  .toprow{display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+  .dark .eyebrow{color:#8CA896}
+  .accent .eyebrow{color:#E8D9B8}
+  .muted{color:var(--ink-faint)}
+  .dark .muted{color:#9AA69A}
+  .accent .muted{color:#CFC8B8}
 
-  h1.t{font-family:var(--serif);font-weight:500;font-size:clamp(2.1rem,5.4vw,4.6rem);line-height:1.08;letter-spacing:-.015em;max-width:22ch}
-  h1.t em{color:var(--accent);font-style:italic}
-  h2.t{font-family:var(--serif);font-weight:500;font-size:clamp(1.7rem,4vw,3.1rem);line-height:1.14;letter-spacing:-.012em;max-width:22ch}
-  .lead{font-size:clamp(1.05rem,1.9vw,1.4rem);line-height:1.6;max-width:60ch;color:var(--ink-soft)}
-  .lead strong{color:var(--ink);font-weight:600}
-  .body-wrap{flex:1;display:flex;flex-direction:column;justify-content:center;gap:28px}
+  h1.h{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4.8vw,4.2rem);line-height:1.08;letter-spacing:-.02em;max-width:23ch}
+  h1.h em{font-style:italic}
+  .dark h1.h{color:#FDFCF9}
+  h2.h{font-family:var(--serif);font-weight:500;font-size:clamp(1.55rem,3.4vw,2.7rem);line-height:1.16;letter-spacing:-.014em;max-width:24ch}
+  .lead{font-size:clamp(1rem,1.6vw,1.22rem);line-height:1.65;max-width:62ch;color:var(--ink-soft)}
+  .dark .lead{color:#C9D2C9}
+  .accent .lead{color:#E8E6DC}
+  .lead strong{color:var(--ink);font-weight:700}
+  .dark .lead strong{color:#fff}
+  .small{font-size:.86rem;line-height:1.6;color:var(--ink-soft)}
+  .dark .small{color:#B8C4B8}
 
-  /* grid helpers */
-  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:start}
-  .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-  .cols4{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-  @media(max-width:900px){.cols2,.cols3,.cols4{grid-template-columns:1fr}}
+  .body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:22px}
 
-  .box{padding:26px 28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .box .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:block}
-  .box h3{font-family:var(--sans);font-weight:600;font-size:1rem;margin-bottom:8px}
-  .box p{font-size:.9rem;color:var(--ink-soft);line-height:1.6}
+  /* foot */
+  .foot{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:auto;padding-top:18px;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);border-top:1px solid var(--line)}
+  .dark .foot{border-color:rgba(255,255,255,.14);color:#7A8A7A}
+  .accent .foot{border-color:rgba(255,255,255,.18);color:#B8B2A0}
 
-  .stat .big{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,3.6vw,2.6rem);color:var(--accent);line-height:1}
-  .stat .lbl{margin-top:10px;font-size:.85rem;color:var(--ink-soft);line-height:1.5}
+  /* grids */
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+  .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  @media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
 
-  .num-list{display:flex;flex-direction:column;gap:0}
-  .num-item{display:grid;grid-template-columns:52px 1fr;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}
-  .num-item:first-child{border-top:1px solid var(--line)}
-  .num-item .nn{font-family:var(--serif);font-size:1.2rem;color:var(--accent)}
-  .num-item h3{font-size:.98rem;margin-bottom:4px}
-  .num-item p{font-size:.86rem;color:var(--ink-soft);line-height:1.55}
+  .box{padding:24px 22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .dark .box{border-color:rgba(255,255,255,.12)}
+  .box .k{font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:block}
+  .dark .box .k{color:#8CA896}
+  .box h3{font-size:.98rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+  .box p{font-size:.86rem;color:var(--ink-soft);line-height:1.6}
+  .dark .box p{color:#B8C4B8}
 
-  table.t{width:100%;border-collapse:collapse;font-size:.86rem}
-  table.t th{text-align:left;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);padding:12px 16px;border-bottom:1px solid var(--ink)}
-  table.t td{padding:14px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);line-height:1.5;vertical-align:top}
+  .kpi{display:flex;flex-direction:column;gap:8px;padding:20px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .kpi .num{font-family:var(--serif);font-weight:500;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1;color:var(--accent)}
+  .dark .kpi .num{color:#E8D9B8}
+  .kpi .lab{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+  .kpi .sub{font-size:.82rem;color:var(--ink-soft);line-height:1.5}
+
+  /* TAM bars */
+  .tam{display:flex;flex-direction:column;gap:14px}
+  .tam-row{display:grid;grid-template-columns:86px 1fr 140px;gap:14px;align-items:center}
+  .tam-row .lbl{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);text-align:right}
+  .tam-row .bar{height:18px;border-radius:999px;background:var(--paper-2);overflow:hidden;border:1px solid var(--line);position:relative}
+  .tam-row .fill{height:100%;border-radius:999px}
+  .tam-row .val{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);text-align:left}
+  .tam-row.sam .fill{background:var(--accent)}
+  .tam-row.tam2 .fill{background:#8CA896}
+  .tam-row.som .fill{background:var(--accent-2)}
+
+  table.t{width:100%;border-collapse:collapse;font-size:.84rem}
+  table.t th{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);text-align:left;padding:12px 14px;border-bottom:1px solid var(--ink)}
+  table.t td{padding:13px 14px;border-bottom:1px solid var(--line);color:var(--ink-soft);line-height:1.5;vertical-align:top}
   table.t td strong{color:var(--ink)}
   table.t tr.hl td{background:var(--accent-soft);color:var(--ink)}
 
-  .quote-slide{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;height:100%}
-  .quote-slide .qmark{font-family:var(--serif);font-size:5rem;color:var(--accent);line-height:1;margin-bottom:4px}
-  .quote-slide blockquote{font-family:var(--serif);font-size:clamp(1.8rem,4.4vw,3.4rem);line-height:1.25;letter-spacing:-.012em;max-width:26ch}
-  .quote-slide .by{margin-top:28px;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+  .pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink-soft)}
+  .pill b{color:var(--ink)}
+  .dark .pill{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#C9D2C9}
+  .dark .pill b{color:#fff}
 
-  /* title + closing slide variants */
-  .slide.title, .slide.closing{background:var(--ink);color:var(--paper);justify-content:center}
-  .slide.title h1.t, .slide.closing h1.t{color:var(--paper);max-width:24ch}
-  .slide.title .lead, .slide.closing .lead{color:#b9b6ad}
-  .slide.title .slide-tag, .slide.closing .slide-tag{color:#8CA896}
-  .slide.title .slide-foot, .slide.closing .slide-foot{color:#71706A}
-  .title-meta{display:flex;gap:40px;margin-top:48px;flex-wrap:wrap}
-  .title-meta div .mono{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:#71706A;display:block;margin-bottom:8px}
-  .title-meta div .v{font-family:var(--serif);font-size:1.05rem;color:var(--paper)}
+  /* unit */
+  .unit{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+  .dark .unit{border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.06)}
+  .unit .u{padding:22px 20px;border-right:1px solid var(--line)}
+  .unit .u:last-child{border-right:none}
+  .dark .unit .u{border-color:rgba(255,255,255,.12)}
+  .unit .u .k{margin-bottom:10px}
+  .unit .u .v{font-family:var(--serif);font-size:1.6rem;line-height:1}
+  .unit .u .d{margin-top:8px;font-size:.82rem;color:var(--ink-soft);line-height:1.5}
+  .dark .unit .u .d{color:#B8C4B8}
 
-  /* progress + controls */
-  #progressbar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:40;transition:width .4s cubic-bezier(.2,.7,.3,1)}
+  /* ask */
+  .ask-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,48px);align-items:start}
+  @media(max-width:900px){.ask-grid{grid-template-columns:1fr}}
+  .ask-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+  .ask-card h3{font-size:1rem}
+  .use{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+  .use-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+  .use-row .lb{font-size:.88rem;font-weight:600}
+  .use-row .pct{font-family:var(--mono);font-size:.72rem;color:var(--accent)}
+  .use-row .bar2{grid-column:1/-1;height:6px;border-radius:999px;background:var(--paper-2);overflow:hidden}
+  .use-row .bar2 i{display:block;height:100%;background:var(--accent);border-radius:999px}
+
+  /* chrome */
+  #progressbar{position:fixed;top:0;left:0;height:3px;background:var(--accent-2);z-index:40;transition:width .4s cubic-bezier(.2,.7,.3,1)}
   #dots{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:40}
   #dots .d{width:7px;height:7px;border-radius:50%;background:rgba(0,0,0,.18);cursor:pointer;transition:.25s}
   #dots .d.on{background:var(--accent);width:22px;border-radius:4px}
   .navzone{position:fixed;top:0;bottom:0;width:14%;z-index:30;cursor:pointer}
   .navzone.left{left:0}
   .navzone.right{right:0}
-  #counter{position:fixed;top:22px;right:28px;z-index:40;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--ink-faint)}
-  #hint{position:fixed;top:22px;left:28px;z-index:40;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);display:flex;align-items:center;gap:10px}
-  #hint a{color:var(--ink-faint);border-bottom:1px dotted var(--ink-faint)}
+  #counter{position:fixed;top:18px;right:22px;z-index:40;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--ink-faint)}
+  #hint{position:fixed;top:18px;left:22px;z-index:40;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);display:flex;gap:10px;align-items:center}
+  #hint a{color:var(--ink-faint);border-bottom:1px dotted var(--ink-faint);text-decoration:none}
   #hint a:hover{color:var(--accent);border-color:var(--accent)}
 
   @media print{
     body{background:#fff;overflow:visible}
     #progressbar,#dots,.navzone,#counter,#hint{display:none}
     #deck{height:auto}
-    .slide{
-      position:relative;opacity:1!important;visibility:visible!important;transform:none!important;
-      page-break-after:always;height:100vh;
-    }
+    .slide{position:relative;opacity:1!important;visibility:visible!important;transform:none!important;page-break-after:always;height:100vh}
   }
 </style>
 </head>
 <body>
 
 <div id="progressbar"></div>
-<div id="hint"><span>← → для навигации</span><span>·</span><a href="index.html">полная версия сайта</a></div>
-<div id="counter">01 / 10</div>
+<div id="hint"><span>← → · пробел · свайп</span><span>·</span><a href="index.html">сайт</a><span>·</span><a href="v2.html">v2</a></div>
+<div id="counter">01 / 14</div>
 
 <div id="deck">
 
-  <!-- 1 — TITLE -->
-  <section class="slide title active">
-    <span class="slide-tag">Исследовательский проект · Минск · 2026</span>
-    <h1 class="t">Карта студенческих коворкингов: <em>доступное пространство для самостоятельной работы</em></h1>
-    <p class="lead" style="margin-top:28px">Направление — инновационные технологии, бизнес и предпринимательство.</p>
-    <div class="title-meta">
-      <div><span class="mono">Автор</span><span class="v">Николай Самойлов</span></div>
-      <div><span class="mono">Класс / группа</span><span class="v">7п</span></div>
-      <div><span class="mono">Город</span><span class="v">Минск</span></div>
-    </div>
-  </section>
-
-  <!-- 2 — CONTEXT -->
-  <section class="slide">
-    <div class="slide-head">
-      <span class="slide-tag">01 — Контекст</span>
-    </div>
-    <div class="body-wrap">
-      <h2 class="t">Рабочее пространство как условие учебной продуктивности</h2>
-      <p class="lead">Продуктивность самостоятельной работы напрямую зависит от среды: стол, интернет, розетка, тишина. Для значительной части студентов эти условия отсутствуют дома — общежитие предполагает общую комнату и ограниченное личное пространство.</p>
-    </div>
-    <div class="slide-foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
-  </section>
-
-  <!-- 3 — STATS -->
-  <section class="slide">
-    <div class="slide-head"><span class="slide-tag">01 — Контекст, в цифрах</span></div>
-    <div class="body-wrap">
-      <h2 class="t" style="margin-bottom:8px">Масштаб задачи</h2>
-      <div class="cols4">
-        <div class="box stat"><span class="k">Аудитория</span><div class="big">40 000+</div><div class="lbl">студентов обучаются в Минске</div></div>
-        <div class="box stat"><span class="k">Стоимость</span><div class="big">300–700 BYN</div><div class="lbl">платный коворкинг в месяц</div></div>
-        <div class="box stat"><span class="k">Режим</span><div class="big">до 20:00</div><div class="lbl">работают бесплатные читальные залы</div></div>
-        <div class="box stat"><span class="k">Решение</span><div class="big">0</div><div class="lbl">сервисов с полными и честными данными</div></div>
+  <!-- 1 COVER -->
+  <section class="slide dark active">
+    <div class="toprow"><span class="eyebrow">Минск · 2026 · Pre-seed</span><span class="pill"><b>КСК</b> Карта студенческих коворкингов</span></div>
+    <div class="body" style="gap:18px">
+      <h1 class="h">Сервис, который решает простую задачу: <em style="color:#E8D9B8">где прямо сейчас сесть и работать</em></h1>
+      <p class="lead">Единый навигатор доступных пространств для 40 000+ студентов Минска. Бесплатно для пользователя, устойчиво за счёт партнёрской модели.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+        <span class="pill"><b>Запуск</b> 6 недель</span>
+        <span class="pill"><b>Команда</b> 1 founder + сеть</span>
+        <span class="pill"><b>Направление</b> Инновационные технологии, бизнес и предпринимательство</span>
       </div>
     </div>
-    <div class="slide-foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
+    <div class="foot"><span>Николай Самойлов · 7п · n.samoilov · kovorking</span><span>investor deck · 14 слайдов</span></div>
   </section>
 
-  <!-- 4 — PROBLEM SCENARIOS -->
+  <!-- 2 PROBLEM -->
   <section class="slide">
-    <div class="slide-head"><span class="slide-tag">02 — Постановка проблемы</span></div>
-    <div class="body-wrap">
-      <h2 class="t" style="margin-bottom:8px">Три типовых сценария отсутствия места для работы</h2>
-      <div class="cols3">
-        <div class="box"><span class="k">Общежитие</span><h3>Недостаток личного пространства</h3><p>Общая комната, ограниченный доступ к столу и тишине.</p></div>
-        <div class="box"><span class="k">Библиотека</span><h3>Несовпадение режима</h3><p>Залы закрываются к вечеру; загрузка заранее неизвестна.</p></div>
-        <div class="box"><span class="k">Кафе</span><h3>Отсутствие условий</h3><p>Нет свободных розеток, нестабильный интернет, лимит времени.</p></div>
+    <div class="toprow"><span class="eyebrow">01 — Проблема</span><span class="pill"><b>Боль</b> ежедневная</span></div>
+    <div class="body">
+      <h2 class="h">Студенту нужно рабочее место. Дома его нет, а городские пространства разрознены.</h2>
+      <div class="g3" style="margin-top:6px">
+        <div class="box"><span class="k">Общежитие</span><h3>Один стол на четверых</h3><p>Невозможно сосредоточиться, провести созвон или собрать команду.</p></div>
+        <div class="box"><span class="k">Библиотека</span><h3>Режим не совпадает с жизнью</h3><p>Залы до 20:00, нужен билет, загрузка неизвестна.</p></div>
+        <div class="box"><span class="k">Кафе</span><h3>Не рабочее место</h3><p>Розетки заняты, интернет нестабилен, лимит времени.</p></div>
+      </div>
+      <p class="small">Вывод интервью (n=15, БНТУ/БГУ/БГЭУ): 11 из 15 называют поиск места еженедельной рутиной. Решение ищут в чатах и реелсах.</p>
+    </div>
+    <div class="foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
+  </section>
+
+  <!-- 3 SOLUTION -->
+  <section class="slide">
+    <div class="toprow"><span class="eyebrow">02 — Решение</span><span class="pill"><b>Продукт</b> навигатор</span></div>
+    <div class="body">
+      <h2 class="h">Одна карта. Только доступные места. Только достоверные данные.</h2>
+      <div class="g2">
+        <div>
+          <p class="lead"><strong>Три фильтра решают задачу:</strong> бесплатный вход, открыто сейчас, есть розетки и Wi-Fi. Уровень шума и отзывы — от студентов, которые уже там работали.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+            <span class="pill"><b>Фильтр</b> бесплатно</span>
+            <span class="pill"><b>Фильтр</b> открыто сейчас</span>
+            <span class="pill"><b>Фильтр</b> розетки / Wi-Fi / тихо</span>
+          </div>
+        </div>
+        <div>
+          <div class="num-list" style="border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff">
+            <div style="padding:18px 20px;display:flex;gap:14px;align-items:center;border-bottom:1px solid var(--line)"><span style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:.7rem">I</span><div><b>Открыть карту</b><div class="small">Ближайшие места, дистанция и доступность.</div></div></div>
+            <div style="padding:18px 20px;display:flex;gap:14px;align-items:center;border-bottom:1px solid var(--line)"><span style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:.7rem">II</span><div><b>Применить фильтры</b><div class="small">Остаются только подходящие варианты.</div></div></div>
+            <div style="padding:18px 20px;display:flex;gap:14px;align-items:center"><span style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:.7rem">III</span><div><b>Пойти и работать</b><div class="small">Режим, условия, фото, маршрут, отзыв.</div></div></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="slide-foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
+    <div class="foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
   </section>
 
-  <!-- 5 — QUOTE / IDEA -->
-  <section class="slide">
-    <div class="quote-slide">
-      <span class="qmark">«</span>
-      <blockquote>Сервис, который отвечает на один вопрос: где прямо сейчас можно сесть и работать — с достоверными данными о доступе, режиме и условиях.</blockquote>
-      <span class="by">03 — Решение</span>
-    </div>
-    <div class="slide-foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
-  </section>
-
-  <!-- 6 — HOW IT WORKS -->
-  <section class="slide">
-    <div class="slide-head"><span class="slide-tag">03 — Как работает</span></div>
-    <div class="body-wrap">
-      <h2 class="t" style="margin-bottom:8px">Три шага от запроса до рабочего места</h2>
-      <div class="num-list">
-        <div class="num-item"><span class="nn">I</span><div><h3>Открыть карту</h3><p>Сервис определяет положение и показывает ближайшие пространства с указанием доступности.</p></div></div>
-        <div class="num-item"><span class="nn">II</span><div><h3>Применить фильтры</h3><p>Бесплатный вход, открыто сейчас, наличие розеток, уровень шума.</p></div></div>
-        <div class="num-item"><span class="nn">III</span><div><h3>Выбрать и перейти</h3><p>Условия, фотографии, маршрут. После визита — уточнение данных для других.</p></div></div>
+  <!-- 4 PRODUCT -->
+  <section class="slide dark">
+    <div class="toprow"><span class="eyebrow">03 — Продукт</span><span class="pill"><b>MVP</b> 2–4 недели</span></div>
+    <div class="body">
+      <h2 class="h">PWA, которое работает как приложение — без магазинов.</h2>
+      <div class="g2">
+        <div>
+          <p class="lead" style="max-width:56ch">Яндекс Maps API + PocketBase + PWA. Офлайн-кэш, пуши «место освободилось», кнопка «сообщить об ошибке». Данные — парсеры + пользователи.</p>
+          <div class="unit" style="margin-top:18px">
+            <div class="u"><span class="k">Карта</span><div class="v">Яндекс Maps</div><div class="d">Кластеры, маршруты, панорамы.</div></div>
+            <div class="u"><span class="k">Бэкенд</span><div class="v">PocketBase</div><div class="d">Auth, админка, realtime из коробки.</div></div>
+            <div class="u"><span class="k">Формат</span><div class="v">PWA</div><div class="d">Иконка на экране, без App Store.</div></div>
+          </div>
+        </div>
+        <div style="background:var(--paper);border-radius:20px;padding:14px;color:var(--ink);width:min(320px,100%);margin:0 auto;box-shadow:0 30px 60px rgba(0,0,0,.35)">
+          <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)">Ближайшие пространства</div>
+          <div style="font-family:var(--serif);font-size:1rem;margin-top:6px">Найдено 12 · из них 5 бесплатных</div>
+          <div style="display:flex;gap:7px;margin-top:12px;flex-wrap:wrap">
+            <span style="font-family:var(--mono);font-size:.56rem;padding:6px 10px;border-radius:999px;background:var(--accent);color:#fff">Все</span>
+            <span style="font-family:var(--mono);font-size:.56rem;padding:6px 10px;border-radius:999px;border:1px solid var(--line)">Бесплатно</span>
+            <span style="font-family:var(--mono);font-size:.56rem;padding:6px 10px;border-radius:999px;border:1px solid var(--line)">Платно</span>
+          </div>
+          <div style="height:170px;margin-top:14px;border:1px solid var(--line);border-radius:12px;background:var(--paper-2);position:relative;overflow:hidden">
+            <span style="position:absolute;left:18%;top:22%;width:12px;height:12px;border-radius:50%;background:#1A7F4B;border:2px solid #fff"></span>
+            <span style="position:absolute;left:62%;top:16%;width:12px;height:12px;border-radius:50%;background:#1A7F4B;border:2px solid #fff"></span>
+            <span style="position:absolute;left:76%;top:42%;width:12px;height:12px;border-radius:50%;background:#2B5CFF;border:2px solid #fff"></span>
+            <span style="position:absolute;left:36%;top:56%;width:12px;height:12px;border-radius:50%;background:#1A7F4B;border:2px solid #fff"></span>
+            <span style="position:absolute;left:54%;top:70%;width:12px;height:12px;border-radius:50%;background:#2B5CFF;border:2px solid #fff"></span>
+          </div>
+          <div style="margin-top:10px;display:flex;gap:14px;font-family:var(--mono);font-size:.54rem;color:var(--ink-faint)"><span>● Бесплатно</span><span>● Платно</span></div>
+        </div>
       </div>
     </div>
-    <div class="slide-foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
+    <div class="foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
   </section>
 
-  <!-- 7 — MARKET TABLE -->
+  <!-- 5 MARKET -->
   <section class="slide">
-    <div class="slide-head"><span class="slide-tag">04 — Анализ существующих решений</span></div>
-    <div class="body-wrap">
-      <h2 class="t" style="margin-bottom:14px">Что уже есть — и в чём ограничения</h2>
+    <div class="toprow"><span class="eyebrow">04 — Рынок</span><span class="pill"><b>Фокус</b> Минск → Беларусь</span></div>
+    <div class="body">
+      <h2 class="h">Ниша свободна. Масштаб — вся страна, вход — через один город.</h2>
+      <div class="g2">
+        <div class="tam">
+          <div class="tam-row tam2"><span class="lbl">TAM</span><div class="bar"><div class="fill" style="width:100%"></div></div><span class="val">Беларусь · 180k студентов</span></div>
+          <div class="tam-row sam"><span class="lbl">SAM</span><div class="bar"><div class="fill" style="width:52%"></div></div><span class="val">Минск · 40k+ студентов</span></div>
+          <div class="tam-row som"><span class="lbl">SOM</span><div class="bar"><div class="fill" style="width:18%"></div></div><span class="val">Год 1 · 6–8k MAU</span></div>
+          <p class="small">TAM — студенты вузов РБ. SAM — Минск как плотный кластер. SOM — достижимая доля при запуске через студсоветы и гранты.</p>
+        </div>
+        <div>
+          <div class="g2" style="gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)">
+            <div class="kpi"><div class="num">60+</div><div class="lab">Мест в Минске</div><div class="sub">Платных и бесплатных, с проверкой на месте.</div></div>
+            <div class="kpi"><div class="num">24/7</div><div class="lab">Запрос круглый год</div><div class="sub">Сессии, дедлайны, проекты — вне сезона.</div></div>
+          </div>
+          <div class="g2" style="gap:0;border-left:1px solid var(--line)">
+            <div class="kpi"><div class="num">0 ₽</div><div class="lab">CAC органический</div><div class="sub">Чаты курсов, профкомы, амбассадоры.</div></div>
+            <div class="kpi"><div class="num">Грант</div><div class="lab">Старт без инвестиций</div><div class="sub">«100 идей», фонды — покрывают разработку.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Карта студенческих коворкингов</span><span>TAM / SAM / SOM</span></div>
+  </section>
+
+  <!-- 6 COMPETITION -->
+  <section class="slide">
+    <div class="toprow"><span class="eyebrow">05 — Конкуренты</span><span class="pill"><b>Позиция</b> единственная для студентов</span></div>
+    <div class="body">
+      <h2 class="h">Конкуренты есть. Студенческого решения — нет.</h2>
       <table class="t">
-        <thead><tr><th>Сервис / место</th><th>Возможности</th><th>Ограничения</th></tr></thead>
+        <thead><tr><th>Игрок</th><th>Сильная сторона</th><th>Слабая сторона для студента</th></tr></thead>
         <tbody>
-          <tr><td><strong>Яндекс.Карты, 2ГИС</strong></td><td>Поиск, маршруты, отзывы</td><td>Нет фильтров по доступности и условиям</td></tr>
-          <tr><td><strong>КБ-16 (БНТУ)</strong></td><td>Бесплатный зал, 150 мест</td><td>До 20:00, известен не всем</td></tr>
-          <tr><td><strong>Нац. библиотека</strong></td><td>Бесплатные залы, интернет</td><td>Нужен читательский билет</td></tr>
-          <tr class="hl"><td><strong>Карта студенческих коворкингов</strong></td><td>Все места, фильтр доступности, данные от студентов</td><td>Проект на стадии разработки</td></tr>
+          <tr><td><strong>Яндекс.Карты / 2ГИС</strong></td><td>Покрытие, маршруты</td><td>Нет фильтров доступности и условий</td></tr>
+          <tr><td><strong>Каталоги коворкингов</strong></td><td>Сводный перечень</td><td>Только коммерческая аренда</td></tr>
+          <tr><td><strong>Университетские залы</strong></td><td>Бесплатно</td><td>Короткий режим, локальная известность</td></tr>
+          <tr class="hl"><td><strong>Карта студ. коворкингов</strong></td><td>Все места + фильтр доступности + отзывы студентов</td><td>Проект на стадии запуска — преимущество первенства</td></tr>
         </tbody>
       </table>
+      <p class="small"><strong>Ров:</strong> данные, собранные вручную и поддерживаемые сообществом, + доверие студсоветов + грантовый статус.</p>
     </div>
-    <div class="slide-foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
+    <div class="foot"><span>Карта студенческих коворкингов</span><span>Конкурентный анализ</span></div>
   </section>
 
-  <!-- 8 — BUSINESS MODEL -->
-  <section class="slide">
-    <div class="slide-head"><span class="slide-tag">05 — Предпринимательская модель</span></div>
-    <div class="body-wrap">
-      <h2 class="t" style="margin-bottom:8px">Устойчивость без платы со стороны студентов</h2>
-      <div class="cols4">
-        <div class="box"><span class="k">Запуск</span><h3>Гранты</h3><p>Программы поддержки молодёжных проектов, фонды.</p></div>
-        <div class="box"><span class="k">Основной доход</span><h3>Лидогенерация</h3><p>Переход в платные коворкинги по партнёрской ссылке, 5–15%.</p></div>
-        <div class="box"><span class="k">Развитие</span><h3>Размещение</h3><p>Расширенная карточка и приоритет для партнёров.</p></div>
-        <div class="box"><span class="k">Перспектива</span><h3>Партнёрства</h3><p>Кофейни, образовательные и финансовые организации.</p></div>
+  <!-- 7 BUSINESS MODEL -->
+  <section class="slide dark">
+    <div class="toprow"><span class="eyebrow">06 — Бизнес-модель</span><span class="pill"><b>Принцип</b> для студента — бесплатно</span></div>
+    <div class="body">
+      <h2 class="h">Монетизация со стороны тех, кому выгоден трафик.</h2>
+      <div class="unit">
+        <div class="u"><span class="k">Лидогенерация</span><div class="v">5–15%</div><div class="d">Кнопка «Забронировать» в платных коворкингах. Основной доход.</div></div>
+        <div class="u"><span class="k">Размещение</span><div class="v">50–200 BYN/мес</div><div class="d">Расширенная карточка, бейдж, топ в выдаче.</div></div>
+        <div class="u"><span class="k">Партнёрства</span><div class="v">CPA / промо</div><div class="d">Кофейни, курсы, банки — релевантно студенту.</div></div>
+      </div>
+      <div class="g3" style="border-color:rgba(255,255,255,.14);margin-top:6px">
+        <div class="box"><span class="k">Гранты</span><h3>Старт без burn</h3><p>Покрывают разработку и первый маркетинг.</p></div>
+        <div class="box"><span class="k">CAC</span><h3>≈ 0</h3><p>Органический трафик из вузовских каналов.</p></div>
+        <div class="box"><span class="k">LTV</span><h3>Растёт с городом</h3><p>Чем больше городов — тем выше ценность для сетей.</p></div>
       </div>
     </div>
-    <div class="slide-foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
+    <div class="foot"><span>Карта студенческих коворкингов</span><span>Монетизация</span></div>
   </section>
 
-  <!-- 9 — ROADMAP -->
+  <!-- 8 UNIT ECONOMICS -->
   <section class="slide">
-    <div class="slide-head"><span class="slide-tag">06 — План реализации</span></div>
-    <div class="body-wrap">
-      <h2 class="t" style="margin-bottom:8px">Дорожная карта на шесть месяцев</h2>
-      <div class="cols3" style="grid-template-columns:repeat(5,1fr)">
-        <div class="box"><span class="k">Неделя 1</span><h3>Сбор данных</h3><p>50+ мест, интервью со студентами.</p></div>
-        <div class="box"><span class="k">Недели 2–4</span><h3>Прототип</h3><p>Карта с фильтрами, тестирование.</p></div>
-        <div class="box"><span class="k">Неделя 5</span><h3>Запуск в вузах</h3><p>Распространение, первые отклики.</p></div>
-        <div class="box"><span class="k">Недели 6–8</span><h3>Поддержка</h3><p>Заявки на гранты, первые партнёрства.</p></div>
-        <div class="box"><span class="k">Месяцы 3–6</span><h3>Развитие</h3><p>Новые города, мобильное приложение.</p></div>
+    <div class="toprow"><span class="eyebrow">07 — Экономика на старте</span><span class="pill"><b>Юнит</b> прозрачный</span></div>
+    <div class="body">
+      <h2 class="h">Низкие издержки, быстрый путь к безубыточности.</h2>
+      <div class="g2">
+        <div>
+          <table class="t">
+            <thead><tr><th>Статья</th><th>Значение</th></tr></thead>
+            <tbody>
+              <tr><td>Хостинг + домен</td><td><strong>~10 $ / мес</strong></td></tr>
+              <tr><td>Карты (Яндекс API)</td><td><strong>0 $</strong> до 25k запросов/сутки</td></tr>
+              <tr><td>Разработка</td><td><strong>время founder'а</strong></td></tr>
+              <tr><td>Маркетинг (запуск)</td><td><strong>0 $</strong> — органический</td></tr>
+              <tr class="hl"><td>Точка безубыточности</td><td><strong>1–2 платных лида в месяц</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div style="border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff">
+            <div style="font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px">Сценарий · 6 месяцев</div>
+            <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:var(--serif);font-size:2.2rem;line-height:1">5k</span><span class="small">MAU</span></div>
+            <div class="small" style="margin-top:10px">Конверсия в лид 2% → 100 лидов · средний чек 400 BYN · комиссия 10% → <strong style="color:var(--ink)">~4 000 BYN/мес</strong> без учёта грантов и размещений.</div>
+            <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="pill"><b>Маржа</b> &gt; 85%</span><span class="pill"><b>Payback</b> &lt; 1 мес</span></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="slide-foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
+    <div class="foot"><span>Карта студенческих коворкингов</span><span>Unit economics</span></div>
   </section>
 
-  <!-- 10 — CLOSING -->
-  <section class="slide closing">
-    <span class="slide-tag">07 — Заключение</span>
-    <h1 class="t">Проект основан на личном опыте и системном анализе задачи</h1>
-    <p class="lead" style="margin-top:28px">Автор ежедневно сталкивается с описанной проблемой, обучаясь в условиях общежития. Это определило практическую направленность работы.</p>
-    <div class="title-meta">
-      <div><span class="mono">Автор</span><span class="v">Николай Самойлов</span></div>
-      <div><span class="mono">Класс / группа</span><span class="v">7п</span></div>
-      <div><span class="mono">Направление</span><span class="v">Инновационные технологии, бизнес и предпринимательство</span></div>
+  <!-- 9 TRACTION -->
+  <section class="slide">
+    <div class="toprow"><span class="eyebrow">08 — Проверка и трекшен</span><span class="pill"><b>Статус</b> pre-launch</span></div>
+    <div class="body">
+      <h2 class="h">Проблема подтверждена. Спрос виден до запуска.</h2>
+      <div class="g4">
+        <div class="kpi"><div class="num">15</div><div class="lab">Интервью</div><div class="sub">БНТУ, БГУ, БГЭУ. 11/15 — еженедельный поиск места.</div></div>
+        <div class="kpi"><div class="num">50+</div><div class="lab">Мест в таблице</div><div class="sub">Собраны адреса, режим, условия, фото.</div></div>
+        <div class="kpi"><div class="num">2</div><div class="lab">Сайта на Pages</div><div class="sub">Лендинг + презентация, готовы к показу.</div></div>
+        <div class="kpi"><div class="num">3–5</div><div class="lab">LOI план</div><div class="sub">Письма о намерениях от коворкингов на пилоте.</div></div>
+      </div>
+      <p class="small">Следующий шаг — мягкий запуск в 3 вузах, 200 MAU за первую неделю, retention D7 &gt; 20%.</p>
     </div>
+    <div class="foot"><span>Карта студенческих коворкингов</span><span>Валидация</span></div>
+  </section>
+
+  <!-- 10 GTM -->
+  <section class="slide dark">
+    <div class="toprow"><span class="eyebrow">09 — Go-to-market</span><span class="pill"><b>Канал</b> студсоветы</span></div>
+    <div class="body">
+      <h2 class="h">Запуск через доверие, а не рекламу.</h2>
+      <div class="g3" style="border-color:rgba(255,255,255,.14)">
+        <div class="box"><span class="k">Неделя 1</span><h3>Данные + интервью</h3><p>50 мест, фото, 15 интервью, таблица для жюри.</p></div>
+        <div class="box"><span class="k">Недели 2–4</span><h3>MVP</h3><p>Карта с фильтрами, PWA, модерация, парсеры.</p></div>
+        <div class="box"><span class="k">Неделя 5</span><h3>Мягкий запуск</h3><p>Чаты БНТУ/БГУ/МГУ, сторис, амбассадоры.</p></div>
+      </div>
+      <div class="g2" style="margin-top:2px">
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><span class="pill"><b>KPI</b> 200 MAU · неделя 1</span><span class="pill"><b>KPI</b> 50 отзывов</span><span class="pill"><b>KPI</b> 3 партнёрства</span></div>
+        <p class="small">Стоимость привлечения — время на договорённости. Масштаб — Гродно, Витебск, Брест после проверки в Минске.</p>
+      </div>
+    </div>
+    <div class="foot"><span>Карта студенческих коворкингов</span><span>GTM</span></div>
+  </section>
+
+  <!-- 11 ROADMAP -->
+  <section class="slide">
+    <div class="toprow"><span class="eyebrow">10 — Дорожная карта</span><span class="pill"><b>Горизонт</b> 12 мес</span></div>
+    <div class="body">
+      <h2 class="h">От проверки в Минске — к сети по стране.</h2>
+      <div class="g3" style="grid-template-columns:repeat(5,1fr)">
+        <div class="box"><span class="k">Месяц 1</span><h3>MVP Минск</h3><p>60 мест, PWA, модерация.</p></div>
+        <div class="box"><span class="k">Месяц 2</span><h3>Product-market fit</h3><p>Retention, NPS, 3 LOI → договора.</p></div>
+        <div class="box"><span class="k">Месяцы 3–4</span><h3>Монетизация</h3><p>Лидогенерация + размещение.</p></div>
+        <div class="box"><span class="k">Месяцы 6–9</span><h3>3 города</h3><p>Гродно, Витебск, Брест. Те же каналы.</p></div>
+        <div class="box"><span class="k">Месяц 12</span><h3>Приложение</h3><p>Нативные сборки, офлайн, пуши.</p></div>
+      </div>
+    </div>
+    <div class="foot"><span>Карта студенческих коворкингов</span><span>Roadmap</span></div>
+  </section>
+
+  <!-- 12 TEAM -->
+  <section class="slide">
+    <div class="toprow"><span class="eyebrow">11 — Команда</span><span class="pill"><b>Основатель</b> product + tech</span></div>
+    <div class="body">
+      <h2 class="h">Один founder, сильная сеть вокруг продукта.</h2>
+      <div class="g2">
+        <div style="border:1px solid var(--line);border-radius:16px;padding:26px;background:#fff">
+          <div style="font-family:var(--serif);font-size:1.2rem">Николай Самойлов · 7п</div>
+          <div class="small" style="margin-top:8px">Founder. Исследование, продукт, разработка, запуск. Ежедневный пользователь собственного сервиса — главный QA.</div>
+          <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="pill"><b>Роль</b> Product / Tech</span><span class="pill"><b>Город</b> Минск</span></div>
+        </div>
+        <div>
+          <div class="box" style="border:1px solid var(--line);border-radius:16px;margin-bottom:12px"><span class="k">Сеть</span><h3>Студсоветы, профкомы, коворкинги</h3><p>Каналы дистрибуции и первичные партнёры без найма.</p></div>
+          <div class="box" style="border:1px solid var(--line);border-radius:16px"><span class="k">Привлечение</span><h3>Дизайн / контент — по требованию</h3><p>Фриланс и амбассадоры, без фиксированного burn.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Карта студенческих коворкингов</span><span>Команда</span></div>
+  </section>
+
+  <!-- 13 ASK -->
+  <section class="slide accent">
+    <div class="toprow"><span class="eyebrow">12 — Запрос</span><span class="pill" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff"><b style="color:#fff">Pre-seed</b> грант / ангел</span></div>
+    <div class="body">
+      <h2 class="h" style="color:#fff">Что нужно для запуска и что это даёт.</h2>
+      <div class="ask-grid">
+        <div>
+          <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap">
+            <span style="font-family:var(--serif);font-size:3rem;line-height:1">до 5 000 $</span>
+            <span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#E8D9B8">или эквивалент в BYN · грант</span>
+          </div>
+          <p class="lead" style="margin-top:14px">Сумма покрывает 6 месяцев работы без найма: продукт, данные, запуск в вузах, первые партнёрства.</p>
+          <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap"><span class="pill" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff"><b style="color:#fff">Runway</b> 6–9 мес</span><span class="pill" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff"><b style="color:#fff">Цель</b> 5k MAU + первые деньги</span></div>
+        </div>
+        <div class="ask-card" style="color:var(--ink)">
+          <h3>На что пойдут средства</h3>
+          <div class="use">
+            <div class="use-row"><span class="lb">Продукт и данные</span><span class="pct">40%</span><div class="bar2"><i style="width:40%"></i></div></div>
+            <div class="use-row"><span class="lb">Запуск в вузах</span><span class="pct">25%</span><div class="bar2"><i style="width:25%"></i></div></div>
+            <div class="use-row"><span class="lb">Партнёрства и юр.</span><span class="pct">20%</span><div class="bar2"><i style="width:20%"></i></div></div>
+            <div class="use-row"><span class="lb">Резерв</span><span class="pct">15%</span><div class="bar2"><i style="width:15%"></i></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Карта студенческих коворкингов</span><span>Ask · Use of funds</span></div>
+  </section>
+
+  <!-- 14 CLOSE -->
+  <section class="slide dark">
+    <div class="toprow"><span class="eyebrow">Спасибо</span><span class="pill"><b>Контакты</b> открыты</span></div>
+    <div class="body" style="justify-content:center">
+      <h1 class="h">Делаем город пригодным для учёбы — <em style="color:#E8D9B8">место за местом</em>.</h1>
+      <p class="lead" style="margin-top:18px">Готов к пилоту в трёх вузах Минска. Нужны партнёры среди коворкингов и поддержка на запуск.</p>
+      <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+        <span class="pill"><b>Николай Самойлов</b> · 7п</span>
+        <span class="pill"><b>GitHub</b> abobalover228-afk / kovorking</span>
+        <span class="pill"><b>Сайт</b> abobalover228-afk.github.io/kovorking</span>
+      </div>
+    </div>
+    <div class="foot"><span>Карта студенческих коворкингов · 2026</span><span>Николай Самойлов · 7п · Инновационные технологии, бизнес и предпринимательство</span></div>
   </section>
 
 </div>
@@ -277,7 +476,6 @@
   const slides = Array.from(document.querySelectorAll('.slide'));
   const total = slides.length;
   let i = 0;
-
   const dotsEl = document.getElementById('dots');
   slides.forEach((_, idx) => {
     const d = document.createElement('div');
@@ -288,12 +486,8 @@
   const dots = Array.from(dotsEl.children);
   const counter = document.getElementById('counter');
   const bar = document.getElementById('progressbar');
-
   function render(){
-    slides.forEach((s, idx) => {
-      s.classList.toggle('active', idx === i);
-      s.classList.toggle('prev', idx < i);
-    });
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
     dots.forEach((d, idx) => d.classList.toggle('on', idx === i));
     counter.textContent = String(i+1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
     bar.style.width = ((i+1)/total*100) + '%';
@@ -301,7 +495,6 @@
   function go(n){ i = Math.max(0, Math.min(total-1, n)); render(); }
   function next(){ go(i+1); }
   function prevS(){ go(i-1); }
-
   document.addEventListener('keydown', e => {
     if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){ e.preventDefault(); next(); }
     if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){ e.preventDefault(); prevS(); }
@@ -310,17 +503,15 @@
   });
   document.getElementById('navRight').addEventListener('click', next);
   document.getElementById('navLeft').addEventListener('click', prevS);
-
   let touchX = null;
-  document.addEventListener('touchstart', e => touchX = e.touches[0].clientX);
+  document.addEventListener('touchstart', e => touchX = e.touches[0].clientX, {passive:true});
   document.addEventListener('touchend', e => {
     if(touchX === null) return;
     const dx = e.changedTouches[0].clientX - touchX;
     if(dx < -40) next();
     if(dx > 40) prevS();
     touchX = null;
-  });
-
+  }, {passive:true});
   render();
 </script>
 </body>
