@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Карта студенческих коворкингов — investor deck</title>
+<title>StudyMap Minsk — заявка на проект «Минская смена — 2026»</title>
 <meta name="description" content="Инвесторская презентация проекта Карта студенческих коворкингов — Минск, 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,8 +74,9 @@
   /* grids */
   .g2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
   .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .g5{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
   .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-  @media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  @media(max-width:900px){.g2,.g3,.g4,.g5{grid-template-columns:1fr}}
 
   .box{padding:24px 22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
   .dark .box{border-color:rgba(255,255,255,.12)}
@@ -161,308 +162,166 @@
 
 <div id="progressbar"></div>
 <div id="hint"><span>← → · пробел · свайп</span><span>·</span><a href="index.html">сайт</a><span>·</span><a href="v2.html">v2</a></div>
-<div id="counter">01 / 14</div>
+<div id="counter">01 / 10</div>
 
 <div id="deck">
 
-  <!-- 1 COVER -->
+  <!-- 1 TITLE -->
   <section class="slide dark active">
-    <div class="toprow"><span class="eyebrow">Минск · 2026 · Pre-seed</span><span class="pill"><b>КСК</b> Карта студенческих коворкингов</span></div>
+    <div class="toprow"><span class="eyebrow">Заявка на проект «Минская смена — 2026»</span><span class="pill"><b>Направление</b> Инновационные технологии и предпринимательство</span></div>
     <div class="body" style="gap:18px">
-      <h1 class="h">Сервис, который решает простую задачу: <em style="color:#E8D9B8">где прямо сейчас сесть и работать</em></h1>
-      <p class="lead">Единый навигатор доступных пространств для 40 000+ студентов Минска. Бесплатно для пользователя, устойчиво за счёт партнёрской модели.</p>
+      <h1 class="h">StudyMap Minsk: <em style="color:#E8D9B8">где спокойно позаниматься после пар</em></h1>
+      <p class="lead">Веб-сервис с интерактивной картой бесплатных и доступных мест для учёбы, работы и подготовки к занятиям в Минске.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
-        <span class="pill"><b>Запуск</b> 6 недель</span>
-        <span class="pill"><b>Команда</b> 1 founder + сеть</span>
-        <span class="pill"><b>Направление</b> Инновационные технологии, бизнес и предпринимательство</span>
+        <span class="pill"><b>Автор</b> Николай Самойлов · 7п</span>
+        <span class="pill"><b>Сроки</b> июнь — август 2026</span>
+        <span class="pill"><b>Бюджет</b> до 200 BYN</span>
       </div>
     </div>
-    <div class="foot"><span>Николай Самойлов · 7п · n.samoilov · kovorking</span><span>investor deck · 14 слайдов</span></div>
+    <div class="foot"><span>StudyMap Minsk (Учись.Карта)</span><span>Минская смена — 2026</span></div>
   </section>
 
-  <!-- 2 PROBLEM -->
+  <!-- 2 ABOUT -->
   <section class="slide">
-    <div class="toprow"><span class="eyebrow">01 — Проблема</span><span class="pill"><b>Боль</b> ежедневная</span></div>
+    <div class="toprow"><span class="eyebrow">01 — О проекте</span><span class="pill"><b>Проблема</b> знакома каждому студенту</span></div>
     <div class="body">
-      <h2 class="h">Студенту нужно рабочее место. Дома его нет, а городские пространства разрознены.</h2>
+      <h2 class="h">Каждый студент сталкивается с вопросом: «где спокойно позаниматься после пар».</h2>
+      <p class="lead">Пользователи смогут находить <strong>коворкинги, библиотеки, кафе с Wi-Fi и розетками</strong>, оставлять отзывы и рейтинги. Сервис работает как карта: открыл, увидел подходящие места рядом, выбрал.</p>
       <div class="g3" style="margin-top:6px">
-        <div class="box"><span class="k">Общежитие</span><h3>Один стол на четверых</h3><p>Невозможно сосредоточиться, провести созвон или собрать команду.</p></div>
-        <div class="box"><span class="k">Библиотека</span><h3>Режим не совпадает с жизнью</h3><p>Залы до 20:00, нужен билет, загрузка неизвестна.</p></div>
-        <div class="box"><span class="k">Кафе</span><h3>Не рабочее место</h3><p>Розетки заняты, интернет нестабилен, лимит времени.</p></div>
-      </div>
-      <p class="small">Вывод интервью (n=15, БНТУ/БГУ/БГЭУ): 11 из 15 называют поиск места еженедельной рутиной. Решение ищут в чатах и реелсах.</p>
-    </div>
-    <div class="foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
-  </section>
-
-  <!-- 3 SOLUTION -->
-  <section class="slide">
-    <div class="toprow"><span class="eyebrow">02 — Решение</span><span class="pill"><b>Продукт</b> навигатор</span></div>
-    <div class="body">
-      <h2 class="h">Одна карта. Только доступные места. Только достоверные данные.</h2>
-      <div class="g2">
-        <div>
-          <p class="lead"><strong>Три фильтра решают задачу:</strong> бесплатный вход, открыто сейчас, есть розетки и Wi-Fi. Уровень шума и отзывы — от студентов, которые уже там работали.</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
-            <span class="pill"><b>Фильтр</b> бесплатно</span>
-            <span class="pill"><b>Фильтр</b> открыто сейчас</span>
-            <span class="pill"><b>Фильтр</b> розетки / Wi-Fi / тихо</span>
-          </div>
-        </div>
-        <div>
-          <div class="num-list" style="border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff">
-            <div style="padding:18px 20px;display:flex;gap:14px;align-items:center;border-bottom:1px solid var(--line)"><span style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:.7rem">I</span><div><b>Открыть карту</b><div class="small">Ближайшие места, дистанция и доступность.</div></div></div>
-            <div style="padding:18px 20px;display:flex;gap:14px;align-items:center;border-bottom:1px solid var(--line)"><span style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:.7rem">II</span><div><b>Применить фильтры</b><div class="small">Остаются только подходящие варианты.</div></div></div>
-            <div style="padding:18px 20px;display:flex;gap:14px;align-items:center"><span style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:.7rem">III</span><div><b>Пойти и работать</b><div class="small">Режим, условия, фото, маршрут, отзыв.</div></div></div>
-          </div>
-        </div>
+        <div class="box"><span class="k">Что ищут</span><h3>Места для учёбы и работы</h3><p>Коворкинги, библиотеки, кафе с Wi-Fi и розетками.</p></div>
+        <div class="box"><span class="k">Что делают</span><h3>Отзывы и рейтинги</h3><p>Пользователи сами оценивают места и делятся опытом.</p></div>
+        <div class="box"><span class="k">Где</span><h3>Минск</h3><p>Бесплатные и доступные места по всему городу.</p></div>
       </div>
     </div>
-    <div class="foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
+    <div class="foot"><span>StudyMap Minsk</span><span>Минская смена — 2026</span></div>
   </section>
 
-  <!-- 4 PRODUCT -->
+  <!-- 3 GOAL -->
   <section class="slide dark">
-    <div class="toprow"><span class="eyebrow">03 — Продукт</span><span class="pill"><b>MVP</b> 2–4 недели</span></div>
+    <div class="toprow"><span class="eyebrow">02 — Цель проекта</span><span class="pill"><b>Что строим</b> инструмент + сообщество</span></div>
     <div class="body">
-      <h2 class="h">PWA, которое работает как приложение — без магазинов.</h2>
+      <h2 class="h">Помочь студентам быстро находить комфортные места для учёбы — и объединить их в сообщество.</h2>
+      <p class="lead">Создать удобный цифровой инструмент для студентов Минска, а также сформировать сообщество пользователей, обменивающихся опытом и рекомендациями.</p>
+    </div>
+    <div class="foot"><span>StudyMap Minsk</span><span>Минская смена — 2026</span></div>
+  </section>
+
+  <!-- 4 AUDIENCE -->
+  <section class="slide">
+    <div class="toprow"><span class="eyebrow">03 — Аудитория</span><span class="pill"><b>Возраст</b> 16–23 года</span></div>
+    <div class="body">
+      <h2 class="h">Для кого этот сервис.</h2>
       <div class="g2">
-        <div>
-          <p class="lead" style="max-width:56ch">Яндекс Maps API + PocketBase + PWA. Офлайн-кэш, пуши «место освободилось», кнопка «сообщить об ошибке». Данные — парсеры + пользователи.</p>
-          <div class="unit" style="margin-top:18px">
-            <div class="u"><span class="k">Карта</span><div class="v">Яндекс Maps</div><div class="d">Кластеры, маршруты, панорамы.</div></div>
-            <div class="u"><span class="k">Бэкенд</span><div class="v">PocketBase</div><div class="d">Auth, админка, realtime из коробки.</div></div>
-            <div class="u"><span class="k">Формат</span><div class="v">PWA</div><div class="d">Иконка на экране, без App Store.</div></div>
-          </div>
+        <div class="box" style="border:1px solid var(--line);border-radius:16px;background:#fff">
+          <span class="k">Основная</span>
+          <h3>Студенты колледжей и вузов Минска</h3>
+          <p>Возраст 16–23 года. Те, кому нужно место для учёбы после пар.</p>
         </div>
-        <div style="background:var(--paper);border-radius:20px;padding:14px;color:var(--ink);width:min(320px,100%);margin:0 auto;box-shadow:0 30px 60px rgba(0,0,0,.35)">
-          <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)">Ближайшие пространства</div>
-          <div style="font-family:var(--serif);font-size:1rem;margin-top:6px">Найдено 12 · из них 5 бесплатных</div>
-          <div style="display:flex;gap:7px;margin-top:12px;flex-wrap:wrap">
-            <span style="font-family:var(--mono);font-size:.56rem;padding:6px 10px;border-radius:999px;background:var(--accent);color:#fff">Все</span>
-            <span style="font-family:var(--mono);font-size:.56rem;padding:6px 10px;border-radius:999px;border:1px solid var(--line)">Бесплатно</span>
-            <span style="font-family:var(--mono);font-size:.56rem;padding:6px 10px;border-radius:999px;border:1px solid var(--line)">Платно</span>
-          </div>
-          <div style="height:170px;margin-top:14px;border:1px solid var(--line);border-radius:12px;background:var(--paper-2);position:relative;overflow:hidden">
-            <span style="position:absolute;left:18%;top:22%;width:12px;height:12px;border-radius:50%;background:#1A7F4B;border:2px solid #fff"></span>
-            <span style="position:absolute;left:62%;top:16%;width:12px;height:12px;border-radius:50%;background:#1A7F4B;border:2px solid #fff"></span>
-            <span style="position:absolute;left:76%;top:42%;width:12px;height:12px;border-radius:50%;background:#2B5CFF;border:2px solid #fff"></span>
-            <span style="position:absolute;left:36%;top:56%;width:12px;height:12px;border-radius:50%;background:#1A7F4B;border:2px solid #fff"></span>
-            <span style="position:absolute;left:54%;top:70%;width:12px;height:12px;border-radius:50%;background:#2B5CFF;border:2px solid #fff"></span>
-          </div>
-          <div style="margin-top:10px;display:flex;gap:14px;font-family:var(--mono);font-size:.54rem;color:var(--ink-faint)"><span>● Бесплатно</span><span>● Платно</span></div>
+        <div class="box" style="border:1px solid var(--line);border-radius:16px;background:#fff">
+          <span class="k">Дополнительная</span>
+          <h3>Школьники, молодые специалисты, фрилансеры</h3>
+          <p>Старшеклассники, начинающие специалисты и те, кто работает удалённо.</p>
         </div>
       </div>
     </div>
-    <div class="foot"><span>Карта студенческих коворкингов</span><span>Минск · 2026</span></div>
+    <div class="foot"><span>StudyMap Minsk</span><span>Минская смена — 2026</span></div>
   </section>
 
-  <!-- 5 MARKET -->
+  <!-- 5 INNOVATION -->
   <section class="slide">
-    <div class="toprow"><span class="eyebrow">04 — Рынок</span><span class="pill"><b>Фокус</b> Минск → Беларусь</span></div>
+    <div class="toprow"><span class="eyebrow">04 — Инновационность</span><span class="pill"><b>Уникальность</b> студенческий фокус</span></div>
     <div class="body">
-      <h2 class="h">Ниша свободна. Масштаб — вся страна, вход — через один город.</h2>
-      <div class="g2">
-        <div class="tam">
-          <div class="tam-row tam2"><span class="lbl">TAM</span><div class="bar"><div class="fill" style="width:100%"></div></div><span class="val">Беларусь · 180k студентов</span></div>
-          <div class="tam-row sam"><span class="lbl">SAM</span><div class="bar"><div class="fill" style="width:52%"></div></div><span class="val">Минск · 40k+ студентов</span></div>
-          <div class="tam-row som"><span class="lbl">SOM</span><div class="bar"><div class="fill" style="width:18%"></div></div><span class="val">Год 1 · 6–8k MAU</span></div>
-          <p class="small">TAM — студенты вузов РБ. SAM — Минск как плотный кластер. SOM — достижимая доля при запуске через студсоветы и гранты.</p>
-        </div>
-        <div>
-          <div class="g2" style="gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)">
-            <div class="kpi"><div class="num">60+</div><div class="lab">Мест в Минске</div><div class="sub">Платных и бесплатных, с проверкой на месте.</div></div>
-            <div class="kpi"><div class="num">24/7</div><div class="lab">Запрос круглый год</div><div class="sub">Сессии, дедлайны, проекты — вне сезона.</div></div>
-          </div>
-          <div class="g2" style="gap:0;border-left:1px solid var(--line)">
-            <div class="kpi"><div class="num">0 ₽</div><div class="lab">CAC органический</div><div class="sub">Чаты курсов, профкомы, амбассадоры.</div></div>
-            <div class="kpi"><div class="num">Грант</div><div class="lab">Старт без инвестиций</div><div class="sub">«100 идей», фонды — покрывают разработку.</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="foot"><span>Карта студенческих коворкингов</span><span>TAM / SAM / SOM</span></div>
-  </section>
-
-  <!-- 6 COMPETITION -->
-  <section class="slide">
-    <div class="toprow"><span class="eyebrow">05 — Конкуренты</span><span class="pill"><b>Позиция</b> единственная для студентов</span></div>
-    <div class="body">
-      <h2 class="h">Конкуренты есть. Студенческого решения — нет.</h2>
-      <table class="t">
-        <thead><tr><th>Игрок</th><th>Сильная сторона</th><th>Слабая сторона для студента</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Яндекс.Карты / 2ГИС</strong></td><td>Покрытие, маршруты</td><td>Нет фильтров доступности и условий</td></tr>
-          <tr><td><strong>Каталоги коворкингов</strong></td><td>Сводный перечень</td><td>Только коммерческая аренда</td></tr>
-          <tr><td><strong>Университетские залы</strong></td><td>Бесплатно</td><td>Короткий режим, локальная известность</td></tr>
-          <tr class="hl"><td><strong>Карта студ. коворкингов</strong></td><td>Все места + фильтр доступности + отзывы студентов</td><td>Проект на стадии запуска — преимущество первенства</td></tr>
-        </tbody>
-      </table>
-      <p class="small"><strong>Ров:</strong> данные, собранные вручную и поддерживаемые сообществом, + доверие студсоветов + грантовый статус.</p>
-    </div>
-    <div class="foot"><span>Карта студенческих коворкингов</span><span>Конкурентный анализ</span></div>
-  </section>
-
-  <!-- 7 BUSINESS MODEL -->
-  <section class="slide dark">
-    <div class="toprow"><span class="eyebrow">06 — Бизнес-модель</span><span class="pill"><b>Принцип</b> для студента — бесплатно</span></div>
-    <div class="body">
-      <h2 class="h">Монетизация со стороны тех, кому выгоден трафик.</h2>
-      <div class="unit">
-        <div class="u"><span class="k">Лидогенерация</span><div class="v">5–15%</div><div class="d">Кнопка «Забронировать» в платных коворкингах. Основной доход.</div></div>
-        <div class="u"><span class="k">Размещение</span><div class="v">50–200 BYN/мес</div><div class="d">Расширенная карточка, бейдж, топ в выдаче.</div></div>
-        <div class="u"><span class="k">Партнёрства</span><div class="v">CPA / промо</div><div class="d">Кофейни, курсы, банки — релевантно студенту.</div></div>
-      </div>
-      <div class="g3" style="border-color:rgba(255,255,255,.14);margin-top:6px">
-        <div class="box"><span class="k">Гранты</span><h3>Старт без burn</h3><p>Покрывают разработку и первый маркетинг.</p></div>
-        <div class="box"><span class="k">CAC</span><h3>≈ 0</h3><p>Органический трафик из вузовских каналов.</p></div>
-        <div class="box"><span class="k">LTV</span><h3>Растёт с городом</h3><p>Чем больше городов — тем выше ценность для сетей.</p></div>
-      </div>
-    </div>
-    <div class="foot"><span>Карта студенческих коворкингов</span><span>Монетизация</span></div>
-  </section>
-
-  <!-- 8 UNIT ECONOMICS -->
-  <section class="slide">
-    <div class="toprow"><span class="eyebrow">07 — Экономика на старте</span><span class="pill"><b>Юнит</b> прозрачный</span></div>
-    <div class="body">
-      <h2 class="h">Низкие издержки, быстрый путь к безубыточности.</h2>
-      <div class="g2">
-        <div>
-          <table class="t">
-            <thead><tr><th>Статья</th><th>Значение</th></tr></thead>
-            <tbody>
-              <tr><td>Хостинг + домен</td><td><strong>~10 $ / мес</strong></td></tr>
-              <tr><td>Карты (Яндекс API)</td><td><strong>0 $</strong> до 25k запросов/сутки</td></tr>
-              <tr><td>Разработка</td><td><strong>время founder'а</strong></td></tr>
-              <tr><td>Маркетинг (запуск)</td><td><strong>0 $</strong> — органический</td></tr>
-              <tr class="hl"><td>Точка безубыточности</td><td><strong>1–2 платных лида в месяц</strong></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div>
-          <div style="border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff">
-            <div style="font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px">Сценарий · 6 месяцев</div>
-            <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:var(--serif);font-size:2.2rem;line-height:1">5k</span><span class="small">MAU</span></div>
-            <div class="small" style="margin-top:10px">Конверсия в лид 2% → 100 лидов · средний чек 400 BYN · комиссия 10% → <strong style="color:var(--ink)">~4 000 BYN/мес</strong> без учёта грантов и размещений.</div>
-            <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="pill"><b>Маржа</b> &gt; 85%</span><span class="pill"><b>Payback</b> &lt; 1 мес</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="foot"><span>Карта студенческих коворкингов</span><span>Unit economics</span></div>
-  </section>
-
-  <!-- 9 TRACTION -->
-  <section class="slide">
-    <div class="toprow"><span class="eyebrow">08 — Проверка и трекшен</span><span class="pill"><b>Статус</b> pre-launch</span></div>
-    <div class="body">
-      <h2 class="h">Проблема подтверждена. Спрос виден до запуска.</h2>
+      <h2 class="h">Первая специализированная карта именно для студентов Минска.</h2>
+      <p class="small">Существующие карты коворкингов не учитывают потребности студентов: розетки, тишину, доступность после пар.</p>
       <div class="g4">
-        <div class="kpi"><div class="num">15</div><div class="lab">Интервью</div><div class="sub">БНТУ, БГУ, БГЭУ. 11/15 — еженедельный поиск места.</div></div>
-        <div class="kpi"><div class="num">50+</div><div class="lab">Мест в таблице</div><div class="sub">Собраны адреса, режим, условия, фото.</div></div>
-        <div class="kpi"><div class="num">2</div><div class="lab">Сайта на Pages</div><div class="sub">Лендинг + презентация, готовы к показу.</div></div>
-        <div class="kpi"><div class="num">3–5</div><div class="lab">LOI план</div><div class="sub">Письма о намерениях от коворкингов на пилоте.</div></div>
+        <div class="box"><span class="k">Фильтры</span><h3>Под студента</h3><p>«Есть розетки», «работает после 22:00», «бесплатный Wi-Fi», «рядом с метро», «цена чашки кофе».</p></div>
+        <div class="box"><span class="k">Геймификация</span><h3>Баллы за отзывы</h3><p>Топ-активисты получают мерч или партнёрские скидки.</p></div>
+        <div class="box"><span class="k">Перспектива</span><h3>Расписание колледжей</h3><p>Интеграция: предложение локаций рядом с местом учёбы после пар.</p></div>
+        <div class="box"><span class="k">Ниша</span><h3>Студенческая карта</h3><p>Специализированного решения для студентов Минска пока нет.</p></div>
       </div>
-      <p class="small">Следующий шаг — мягкий запуск в 3 вузах, 200 MAU за первую неделю, retention D7 &gt; 20%.</p>
     </div>
-    <div class="foot"><span>Карта студенческих коворкингов</span><span>Валидация</span></div>
+    <div class="foot"><span>StudyMap Minsk</span><span>Минская смена — 2026</span></div>
   </section>
 
-  <!-- 10 GTM -->
+  <!-- 6 RESULTS -->
   <section class="slide dark">
-    <div class="toprow"><span class="eyebrow">09 — Go-to-market</span><span class="pill"><b>Канал</b> студсоветы</span></div>
+    <div class="toprow"><span class="eyebrow">05 — Ожидаемые результаты</span><span class="pill"><b>Горизонт</b> первые 3 месяца</span></div>
     <div class="body">
-      <h2 class="h">Запуск через доверие, а не рекламу.</h2>
-      <div class="g3" style="border-color:rgba(255,255,255,.14)">
-        <div class="box"><span class="k">Неделя 1</span><h3>Данные + интервью</h3><p>50 мест, фото, 15 интервью, таблица для жюри.</p></div>
-        <div class="box"><span class="k">Недели 2–4</span><h3>MVP</h3><p>Карта с фильтрами, PWA, модерация, парсеры.</p></div>
-        <div class="box"><span class="k">Неделя 5</span><h3>Мягкий запуск</h3><p>Чаты БНТУ/БГУ/МГУ, сторис, амбассадоры.</p></div>
+      <h2 class="h">Что будет к концу реализации.</h2>
+      <div class="g5">
+        <div class="kpi"><div class="num">50</div><div class="lab">Локаций</div><div class="sub">Рабочий веб-сервис с картой минимум 50 мест в Минске.</div></div>
+        <div class="kpi"><div class="num">500+</div><div class="lab">Пользователей</div><div class="sub">Зарегистрированных за первые 3 месяца.</div></div>
+        <div class="kpi"><div class="num">1000+</div><div class="lab">Отзывов</div><div class="sub">Отзывов и оценок от студентов.</div></div>
+        <div class="kpi"><div class="num">3–5</div><div class="lab">Партнёров</div><div class="sub">Колледжи и вузы для продвижения.</div></div>
+        <div class="kpi"><div class="num">TG</div><div class="lab">Сообщество</div><div class="sub">Telegram-канал активных студентов.</div></div>
+      </div>
+    </div>
+    <div class="foot"><span>StudyMap Minsk</span><span>Минская смена — 2026</span></div>
+  </section>
+
+  <!-- 7 TIMELINE -->
+  <section class="slide">
+    <div class="toprow"><span class="eyebrow">06 — Сроки реализации</span><span class="pill"><b>Период</b> июнь — август 2026</span></div>
+    <div class="body">
+      <h2 class="h">Три месяца: от MVP до продвижения.</h2>
+      <div class="g3">
+        <div class="box"><span class="k">Июнь</span><h3>Разработка MVP</h3><p>Минимально рабочая версия сервиса и сбор первых 20 локаций.</p></div>
+        <div class="box"><span class="k">Июль</span><h3>Тестирование и запуск</h3><p>Проверка работы, запуск, привлечение первых пользователей.</p></div>
+        <div class="box"><span class="k">Август</span><h3>Продвижение</h3><p>Продвижение, сбор обратной связи, доработка.</p></div>
+      </div>
+    </div>
+    <div class="foot"><span>StudyMap Minsk</span><span>Минская смена — 2026</span></div>
+  </section>
+
+  <!-- 8 CONDITIONS -->
+  <section class="slide">
+    <div class="toprow"><span class="eyebrow">07 — Условия реализации</span><span class="pill"><b>Бюджет</b> до 200 BYN</span></div>
+    <div class="body">
+      <h2 class="h">Реализуем минимальными силами и бюджетом.</h2>
+      <div class="g3">
+        <div class="box"><span class="k">Команда</span><h3>1–2 человека</h3><p>Разработчик и контент-менеджер.</p></div>
+        <div class="box"><span class="k">Техническая база</span><h3>Личный компьютер</h3><p>Хостинг и домен — около 50 BYN на 3 месяца.</p></div>
+        <div class="box"><span class="k">Контент</span><h3>Личный обход локаций</h3><p>Фото, проверка Wi-Fi и розеток.</p></div>
       </div>
       <div class="g2" style="margin-top:2px">
-        <div style="display:flex;gap:10px;flex-wrap:wrap"><span class="pill"><b>KPI</b> 200 MAU · неделя 1</span><span class="pill"><b>KPI</b> 50 отзывов</span><span class="pill"><b>KPI</b> 3 партнёрства</span></div>
-        <p class="small">Стоимость привлечения — время на договорённости. Масштаб — Гродно, Витебск, Брест после проверки в Минске.</p>
+        <div class="box" style="border:1px solid var(--line);border-radius:16px;background:#fff"><span class="k">Продвижение</span><h3>Через студенческую среду</h3><p>Соцсети колледжей, Telegram-каналы студентов, партнёрство со студенческими советами.</p></div>
+        <div class="box" style="border:1px solid var(--line);border-radius:16px;background:#fff"><span class="k">Бюджет</span><h3>До 200 BYN</h3><p>Домен, хостинг, печать QR-кодов для локаций.</p></div>
       </div>
     </div>
-    <div class="foot"><span>Карта студенческих коворкингов</span><span>GTM</span></div>
+    <div class="foot"><span>StudyMap Minsk</span><span>Минская смена — 2026</span></div>
   </section>
 
-  <!-- 11 ROADMAP -->
-  <section class="slide">
-    <div class="toprow"><span class="eyebrow">10 — Дорожная карта</span><span class="pill"><b>Горизонт</b> 12 мес</span></div>
-    <div class="body">
-      <h2 class="h">От проверки в Минске — к сети по стране.</h2>
-      <div class="g3" style="grid-template-columns:repeat(5,1fr)">
-        <div class="box"><span class="k">Месяц 1</span><h3>MVP Минск</h3><p>60 мест, PWA, модерация.</p></div>
-        <div class="box"><span class="k">Месяц 2</span><h3>Product-market fit</h3><p>Retention, NPS, 3 LOI → договора.</p></div>
-        <div class="box"><span class="k">Месяцы 3–4</span><h3>Монетизация</h3><p>Лидогенерация + размещение.</p></div>
-        <div class="box"><span class="k">Месяцы 6–9</span><h3>3 города</h3><p>Гродно, Витебск, Брест. Те же каналы.</p></div>
-        <div class="box"><span class="k">Месяц 12</span><h3>Приложение</h3><p>Нативные сборки, офлайн, пуши.</p></div>
-      </div>
-    </div>
-    <div class="foot"><span>Карта студенческих коворкингов</span><span>Roadmap</span></div>
-  </section>
-
-  <!-- 12 TEAM -->
-  <section class="slide">
-    <div class="toprow"><span class="eyebrow">11 — Команда</span><span class="pill"><b>Основатель</b> product + tech</span></div>
-    <div class="body">
-      <h2 class="h">Один founder, сильная сеть вокруг продукта.</h2>
-      <div class="g2">
-        <div style="border:1px solid var(--line);border-radius:16px;padding:26px;background:#fff">
-          <div style="font-family:var(--serif);font-size:1.2rem">Николай Самойлов · 7п</div>
-          <div class="small" style="margin-top:8px">Founder. Исследование, продукт, разработка, запуск. Ежедневный пользователь собственного сервиса — главный QA.</div>
-          <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="pill"><b>Роль</b> Product / Tech</span><span class="pill"><b>Город</b> Минск</span></div>
-        </div>
-        <div>
-          <div class="box" style="border:1px solid var(--line);border-radius:16px;margin-bottom:12px"><span class="k">Сеть</span><h3>Студсоветы, профкомы, коворкинги</h3><p>Каналы дистрибуции и первичные партнёры без найма.</p></div>
-          <div class="box" style="border:1px solid var(--line);border-radius:16px"><span class="k">Привлечение</span><h3>Дизайн / контент — по требованию</h3><p>Фриланс и амбассадоры, без фиксированного burn.</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="foot"><span>Карта студенческих коворкингов</span><span>Команда</span></div>
-  </section>
-
-  <!-- 13 RESOURCES -->
+  <!-- 9 SUPPORT -->
   <section class="slide accent">
-    <div class="toprow"><span class="eyebrow">12 — Ресурсы для реализации</span><span class="pill" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff"><b style="color:#fff">Что нужно</b> для запуска</span></div>
+    <div class="toprow"><span class="eyebrow">08 — Необходимое содействие</span><span class="pill" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff"><b style="color:#fff">Что нужно</b> для реализации</span></div>
     <div class="body">
-      <h2 class="h" style="color:#fff">Что требуется, чтобы перейти от прототипа к работающему сервису.</h2>
-      <div class="ask-grid">
-        <div>
-          <p class="lead" style="max-width:52ch">Проект реализуется силами автора. Для ускорения запуска полезны три вида поддержки — организационная, экспертная и информационная.</p>
-          <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
-            <span class="pill" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff"><b style="color:#fff">Срок</b> 6 месяцев до запуска в 3 вузах</span>
-            <span class="pill" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff"><b style="color:#fff">Критерий успеха</b> 200+ пользователей за неделю запуска</span>
-          </div>
-        </div>
-        <div class="ask-card" style="color:var(--ink)">
-          <h3>Что потребуется</h3>
-          <div class="use">
-            <div class="use-row"><span class="lb">Доступ к вузовским каналам (студсоветы)</span><span class="pct">приоритет</span><div class="bar2"><i style="width:40%"></i></div></div>
-            <div class="use-row"><span class="lb">Контакты коворкингов для пилота</span><span class="pct">приоритет</span><div class="bar2"><i style="width:25%"></i></div></div>
-            <div class="use-row"><span class="lb">Консультация по оформлению партнёрств</span><span class="pct">желательно</span><div class="bar2"><i style="width:20%"></i></div></div>
-            <div class="use-row"><span class="lb">Хостинг и домен — покрывается самостоятельно</span><span class="pct">учтено</span><div class="bar2"><i style="width:15%"></i></div></div>
-          </div>
+      <h2 class="h" style="color:#fff">В чём нужна поддержка.</h2>
+      <div class="ask-card" style="color:var(--ink)">
+        <div class="use" style="margin-top:0">
+          <div class="use-row"><span class="lb">Информационная поддержка от Мингорисполкома и администраций колледжей и вузов: размещение информации о проекте на официальных ресурсах и в студенческих группах</span></div>
+          <div class="use-row"><span class="lb">Содействие в сборе информации: данные о бесплатных городских пространствах (библиотеки, молодёжные центры, районные ЦСО)</span></div>
+          <div class="use-row"><span class="lb">Площадка для презентации проекта на городских молодёжных мероприятиях</span></div>
+          <div class="use-row"><span class="lb">Партнёрство с учреждениями культуры и молодёжной политики: QR-коды проекта в библиотеках и молодёжных пространствах</span></div>
+          <div class="use-row"><span class="lb">Экспертная поддержка: консультации специалистов в IT и урбанистике</span></div>
         </div>
       </div>
     </div>
-    <div class="foot"><span>Карта студенческих коворкингов</span><span>Ресурсы и поддержка</span></div>
+    <div class="foot"><span>StudyMap Minsk</span><span>Содействие</span></div>
   </section>
 
-  <!-- 14 CLOSE -->
+  <!-- 10 CLOSING -->
   <section class="slide dark">
-    <div class="toprow"><span class="eyebrow">Спасибо</span><span class="pill"><b>Контакты</b> открыты</span></div>
+    <div class="toprow"><span class="eyebrow">Спасибо</span><span class="pill"><b>Автор</b> Николай Самойлов · 7п</span></div>
     <div class="body" style="justify-content:center">
-      <h1 class="h">Делаем город пригодным для учёбы — <em style="color:#E8D9B8">место за местом</em>.</h1>
-      <p class="lead" style="margin-top:18px">Готов к пилоту в трёх вузах Минска. Нужны партнёры среди коворкингов и поддержка на запуск.</p>
+      <h1 class="h">Находить место для учёбы в Минске должно быть <em style="color:#E8D9B8">быстро и просто</em>.</h1>
+      <p class="lead" style="margin-top:18px">StudyMap Minsk — карта и сообщество студентов, которые знают, где комфортно учиться.</p>
       <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
-        <span class="pill"><b>Николай Самойлов</b> · 7п</span>
-        <span class="pill"><b>GitHub</b> abobalover228-afk / kovorking</span>
-        <span class="pill"><b>Сайт</b> abobalover228-afk.github.io/kovorking</span>
+        <span class="pill"><b>Проект</b> StudyMap Minsk</span>
+        <span class="pill"><b>Конкурс</b> Минская смена — 2026</span>
+        <span class="pill"><b>Направление</b> Инновационные технологии и предпринимательство</span>
       </div>
     </div>
-    <div class="foot"><span>Карта студенческих коворкингов · 2026</span><span>Николай Самойлов · 7п · Инновационные технологии, бизнес и предпринимательство</span></div>
+    <div class="foot"><span>StudyMap Minsk · 2026</span><span>Николай Самойлов · 7п</span></div>
   </section>
 
 </div>
